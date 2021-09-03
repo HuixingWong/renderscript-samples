@@ -20,6 +20,8 @@ import android.content.Context
 import android.content.res.AssetManager
 import android.graphics.Bitmap
 import android.hardware.HardwareBuffer
+import android.os.Build
+import androidx.annotation.RequiresApi
 
 
 class VulkanImageProcessor(context: Context) : ImageProcessor {
@@ -64,6 +66,7 @@ class VulkanImageProcessor(context: Context) : ImageProcessor {
     // must not be used in any way.
     private external fun destroyVulkanProcessor(processor: Long)
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun configureInputAndOutput(inputImage: Bitmap, numberOfOutputImages: Int) {
         val success = configureInputAndOutput(mVulkanProcessor, inputImage, numberOfOutputImages)
         if (!success) throw RuntimeException("Failed to configureInputAndOutput")

@@ -275,7 +275,7 @@ class MainActivity : AppCompatActivity() {
         mLatencyTextView.setText(R.string.benchmark_running_text)
 
         // Start a new thread to run benchmark without blocking the UI thread.
-        Thread(Runnable {
+        Thread {
             synchronized(mLock) {
                 // Run benchmark.
                 val avgMs = runBenchmark(mCurrentProcessor, mFilterMode, mSeekBar.progress);
@@ -289,6 +289,6 @@ class MainActivity : AppCompatActivity() {
                     mBenchmarkButton.isEnabled = true
                 }
             }
-        }).start()
+        }.start()
     }
 }
